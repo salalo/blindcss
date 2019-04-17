@@ -17,7 +17,7 @@ export default {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: $white;
+  background: $grey;
 }
 ::-webkit-scrollbar-thumb {
   background: $main;
