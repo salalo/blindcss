@@ -13,8 +13,8 @@
       >Given the image try to transform it to CSS, after time see the results of all players and choose the best one.</div>
       <div
         class="bottom-paragraph"
-      >You can play without account created, although your account will not appear in the ranking.</div>
-      <Button class="play-btn" text="Play now!"></Button>
+      >Filnd a match automatically by clicing button below or scroll down for more.</div>
+      <Button class="play-btn" type="active" text="PLAY NOW!"></Button>
     </section>
   </header>
 </template>
@@ -60,29 +60,33 @@ nav {
   }
 }
 section {
-  margin: 350px 0 0 150px;
-
+  margin-top: 300px;
+  text-align: center;
   span {
     font-size: 50px;
     color: #fff;
     font-weight: $medium;
   }
   .upper-paragraph {
+    margin: 10px auto;
+
     font-size: 20px;
     border-bottom: 1px solid $light-grey;
     max-width: 700px;
     padding-bottom: 25px;
-    margin: 10px 0;
   }
   .bottom-paragraph {
-    margin: 20px 0;
+    margin: 20px auto;
     max-width: 450px;
+  }
+  .play-btn {
+    margin: 0 auto;
   }
 }
 
 // BREAKPOINTS
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 700px) {
   nav {
     .logo {
       margin-left: 50px;
@@ -92,13 +96,6 @@ section {
     }
   }
   section {
-    margin-left: 50px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  section {
-    text-align: center;
     margin-left: 10px;
     margin-right: 10px;
 
@@ -112,9 +109,6 @@ section {
     }
     .bottom-paragraph {
       margin: 20px auto;
-    }
-    .play-btn {
-      margin: 0 auto;
     }
   }
 }
@@ -146,3 +140,4 @@ section {
   }
 }
 </style>
+

@@ -1,10 +1,10 @@
 <template>
-  <div>{{ text }}</div>
+  <div :class="type">{{ text }}</div>
 </template>
 
 <script>
 export default {
-  props: ["text"]
+  props: ["text", "type"]
 };
 </script>
 
@@ -12,7 +12,7 @@ export default {
 <style <style lang="scss" scoped>
 @import "@/stylesheets/master.scss";
 
-div {
+.active {
   width: 150px;
   height: 50px;
   background-color: $main;
@@ -25,6 +25,23 @@ div {
     @include transition(0s, $duration background-color);
     cursor: pointer;
     background-color: $hover-main;
+  }
+}
+
+.outline {
+  width: 150px;
+  height: 50px;
+  border: 1px solid $grey;
+  color: $grey;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 50px;
+  @include transition(0s, $duration color);
+
+  &:hover {
+    @include transition(0s, $duration color);
+    cursor: pointer;
+    color: $hover-white;
   }
 }
 </style>

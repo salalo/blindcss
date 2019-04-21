@@ -6,5 +6,7 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@/stylesheets/master.scss";
 </style>
+
