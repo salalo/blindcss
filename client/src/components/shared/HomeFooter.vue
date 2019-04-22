@@ -34,10 +34,18 @@ p {
 ul {
   padding: 0;
   margin-top: 100px;
+
   li {
     text-decoration: none;
     list-style: none;
     margin-top: 20px;
+    @include transition(0s, $duration color);
+
+    &:hover {
+      @include transition(0s, $duration color);
+      cursor: pointer;
+      color: $hover-white;
+    }
   }
 }
 footer {

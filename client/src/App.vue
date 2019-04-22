@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style <style lang="scss">
+<style lang="scss">
 @import "@/stylesheets/master.scss";
 
 ::-webkit-scrollbar {
@@ -26,10 +26,12 @@ export default {
 
 html,
 body {
+  height: 100vh;
   font-family: $font-family-sans;
   font-weight: $regular;
   font-size: $font-unit;
   color: $white;
+  background-color: $white;
   padding: 0 !important;
   margin: 0 !important;
   -webkit-font-smoothing: antialiased;
@@ -40,13 +42,5 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-#app {
-  height: 100vh;
-  padding: 0 !important;
-  margin: 0 !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 </style>

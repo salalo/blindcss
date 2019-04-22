@@ -1,5 +1,5 @@
 <template>
-  <div :class="type">{{ text }}</div>
+  <div class="btn" :class="type">{{ text }}</div>
 </template>
 
 <script>
@@ -9,16 +9,19 @@ export default {
 </script>
 
 
-<style <style lang="scss" scoped>
+<style lang="scss" scoped>
 @import "@/stylesheets/master.scss";
 
-.active {
+.btn {
   width: 150px;
   height: 50px;
-  background-color: $main;
   border-radius: 4px;
   text-align: center;
   line-height: 50px;
+}
+
+.active {
+  background-color: $main;
   @include transition(0s, $duration background-color);
 
   &:hover {
@@ -29,13 +32,8 @@ export default {
 }
 
 .outline {
-  width: 150px;
-  height: 50px;
   border: 1px solid $grey;
   color: $grey;
-  border-radius: 4px;
-  text-align: center;
-  line-height: 50px;
   @include transition(0s, $duration color);
 
   &:hover {
