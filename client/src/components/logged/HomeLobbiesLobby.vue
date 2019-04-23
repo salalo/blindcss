@@ -68,5 +68,49 @@ export default {};
     }
   }
 }
+
+// BREAKPOINTS
+
+@media only screen and (max-width: 800px) {
+  .lobby-container {
+    padding: 10px 30px;
+    .players {
+      .player {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .lobby-container {
+    .players {
+      .player {
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .countdown {
+      font-size: 14px;
+      &-timer {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .lobby-container {
+    padding: 20px 10px;
+    .players {
+      .player {
+        margin-right: 5px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
 </style>
 

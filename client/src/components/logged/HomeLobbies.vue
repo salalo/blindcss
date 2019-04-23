@@ -69,6 +69,14 @@ export default {
     display: table;
     margin-top: -50px;
 
+    @media only screen and (max-width: 1500px) {
+      margin-right: 25%;
+    }
+
+    @media only screen and (max-width: 1300px) {
+      margin-right: 20%;
+    }
+
     &:hover {
       cursor: pointer;
     }
@@ -77,6 +85,40 @@ export default {
       display: table-cell;
       vertical-align: middle;
       padding-right: 15px;
+    }
+  }
+}
+
+// BREAKPOINTS
+
+@media only screen and (max-width: 900px) {
+  .container {
+    .sort {
+      margin-right: 10%;
+    }
+    p {
+      font-size: 40px;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    .sort {
+      margin-right: 5%;
+      margin-top: -35px;
+      font-size: 14px;
+    }
+    p {
+      font-size: 30px;
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
+    .create-lobby-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 60px;
+      margin-bottom: 70px;
     }
   }
 }
