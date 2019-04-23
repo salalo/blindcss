@@ -2,8 +2,15 @@
   <header>
     <nav>
       <span class="logo">BlindCSS</span>
-      <span class="sign-btn sign-up">Sign Up</span>
-      <span class="sign-btn">Sign In</span>
+
+      <div class="reglog">
+        <a href="http://localhost:8081/auth/google">
+          <img src="@/assets/google_logo.png" alt="google logo">
+        </a>
+        <a href="http://localhost:8081/auth/facebook">
+          <img src="@/assets/fb_logo.png" alt="facebook logo">
+        </a>
+      </div>
     </nav>
 
     <section>
@@ -14,7 +21,7 @@
       <div
         class="bottom-paragraph"
       >You can play without account created, although your account will not appear in the ranking.</div>
-      <Button class="play-btn" text="Play now!"></Button>
+      <Button class="play-btn" type="active" text="Play now!"></Button>
     </section>
   </header>
 </template>
@@ -38,25 +45,39 @@ header {
 }
 nav {
   padding-top: 50px;
+
   .logo {
     margin-left: 150px;
     color: #fff;
     font-size: 20px;
   }
-  .sign-btn {
-    @include transition(0s, $duration color);
-
-    &:hover {
-      @include transition(0s, $duration color);
-      cursor: pointer;
-      color: $hover-white;
-    }
-  }
-  .sign-up {
-    margin: 0 150px 0 50px;
-  }
-  .sign-btn {
+  .reglog {
     float: right;
+    margin: -7px 130px 0 0;
+    height: 40px;
+
+    img {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      top: 10px;
+    }
+    a {
+      border-radius: 100%;
+      height: 40px;
+      width: 40px;
+      background-color: $light-grey;
+      float: left;
+      text-align: center;
+      margin-right: 20px;
+      @include transition(0s, $duration background-color);
+
+      &:hover {
+        cursor: pointer;
+        @include transition(0s, $duration background-color);
+        background-color: $hover-white;
+      }
+    }
   }
 }
 section {
@@ -87,7 +108,7 @@ section {
     .logo {
       margin-left: 50px;
     }
-    .sign-up {
+    .reglog {
       margin-right: 50px;
     }
   }
@@ -130,7 +151,7 @@ section {
     .logo {
       margin-left: 10px;
     }
-    .sign-up {
+    .reglog {
       margin-right: 10px;
     }
   }

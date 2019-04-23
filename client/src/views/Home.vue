@@ -1,12 +1,12 @@
 <template>
   <div v-if="false">
-    <UnHeader></UnHeader>
-    <UnMain></UnMain>
+    <Header></Header>
+    <Main></Main>
     <Footer></Footer>
   </div>
   <div v-else>
-    <Header></Header>
-    <Main></Main>
+    <UnHeader></UnHeader>
+    <UnMain></UnMain>
     <Footer></Footer>
   </div>
 </template>

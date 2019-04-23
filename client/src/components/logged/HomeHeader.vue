@@ -2,8 +2,8 @@
   <header>
     <nav>
       <span class="logo">BlindCSS</span>
-      <span class="sign-btn sign-up">Sign Up</span>
-      <span class="sign-btn">Sign In</span>
+      <span class="ranking">#1204</span>
+      <User class="user"></User>
     </nav>
 
     <section>
@@ -21,9 +21,12 @@
 
 <script>
 import Button from "../shared/Button.vue";
+import User from "../logged/HomeHeaderUser.vue";
+
 export default {
   components: {
-    Button
+    Button,
+    User
   }
 };
 </script>
@@ -35,6 +38,18 @@ header {
   height: 100vh;
   min-height: 700px;
   background-color: $grey;
+
+  .ranking {
+    color: $light-grey;
+    display: table;
+    margin: 0 auto;
+    margin-top: -20px;
+  }
+
+  .user {
+    float: right;
+    margin-top: -20px;
+  }
 }
 nav {
   padding-top: 50px;
@@ -42,21 +57,10 @@ nav {
     margin-left: 150px;
     color: #fff;
     font-size: 20px;
-  }
-  .sign-btn {
-    @include transition(0s, $duration color);
 
-    &:hover {
-      @include transition(0s, $duration color);
-      cursor: pointer;
-      color: $hover-white;
+    @media only screen and (max-width: 360px) {
+      margin-left: 10px;
     }
-  }
-  .sign-up {
-    margin: 0 150px 0 50px;
-  }
-  .sign-btn {
-    float: right;
   }
 }
 section {
@@ -82,6 +86,18 @@ section {
   .play-btn {
     margin: 0 auto;
   }
+
+  @media only screen and (max-width: 360px) {
+    margin-top: 100px !important;
+  }
+
+  @media only screen and (max-width: 500px) {
+    margin-top: 200px;
+  }
+
+  @media only screen and (max-height: 768px) {
+    margin-top: 200px;
+  }
 }
 
 // BREAKPOINTS
@@ -90,9 +106,6 @@ section {
   nav {
     .logo {
       margin-left: 50px;
-    }
-    .sign-up {
-      margin-right: 50px;
     }
   }
   section {
@@ -110,33 +123,6 @@ section {
     .bottom-paragraph {
       margin: 20px auto;
     }
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  section {
-    margin-top: 200px;
-  }
-}
-
-@media only screen and (max-width: 360px) {
-  nav {
-    .logo {
-      margin-left: 10px;
-    }
-    .sign-up {
-      margin-right: 10px;
-    }
-  }
-  section {
-    margin-top: 100px !important;
-  }
-}
-
-// HEIGHT
-@media only screen and (max-height: 768px) {
-  section {
-    margin-top: 200px;
   }
 }
 </style>
