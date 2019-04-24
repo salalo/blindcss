@@ -24,7 +24,6 @@ export default {
   border-radius: 5px;
 }
 
-html,
 body {
   height: 100vh;
   font-family: $font-family-sans;

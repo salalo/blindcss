@@ -4,12 +4,20 @@ import FacebookStrategy from 'passport-facebook';
 import keys from '../config/keys.js';
 import User from '../config/user-model.js';
 
+passport.serializeUser((user, done) => done(null, user._id));
+
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then(user => done(null, user))
+    .catch(err => done(null, false));
+});
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: keys.google.clientID,
       clientSecret: keys.google.secret,
-      callbackURL: '/auth/google/cb'
+      callbackURL: keys.google.cb
     },
     (token, tokenSecret, profile, done) => {
       User.findOne({ googleID: profile.id })
@@ -35,7 +43,7 @@ passport.use(
     {
       clientID: keys.fb.clientID,
       clientSecret: keys.fb.secret,
-      callbackURL: '/auth/facebook/cb'
+      callbackURL: keys.fb.cb
     },
     (token, tokenSecret, profile, done) => {
       User.findOne({ facebookID: profile.id })

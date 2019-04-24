@@ -13,7 +13,8 @@ export default () => {
 
   api.get(
     '/google/cb',
-    passport.authenticate('google', { session: false }),
+    passport.authenticate('google', { session: true }),
+
     (req, res) => {
       res.redirect('http://localhost:8080');
     }
@@ -23,11 +24,22 @@ export default () => {
 
   api.get(
     '/facebook/cb',
-    passport.authenticate('facebook', { session: false }),
+    passport.authenticate('facebook', { session: true }),
+
     (req, res) => {
       res.redirect('http://localhost:8080');
     }
   );
+
+  api.get('/checkAuth', (req, res) => {
+    // console.log(req.isAuthenticated());
+    req.isAuthenticated() ? res.send(req.user) : res.send('unlogged');
+  });
+
+  api.get('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy();
+  });
 
   return api;
 };

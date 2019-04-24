@@ -10,10 +10,10 @@
       <span>Write CSS blindfolded!</span>
       <div
         class="upper-paragraph"
-      >Given the image try to transform it to CSS, after time see the results of all players and choose the best one.</div>
+      >Given the image try to transform it to CSS, after time see the results of all players and select the best one.</div>
       <div
         class="bottom-paragraph"
-      >Filnd a match automatically by clicing button below or scroll down for more.</div>
+      >Find a match automatically by clicking button below or scroll down for more.</div>
       <Button class="play-btn" type="active" text="PLAY NOW!"></Button>
     </section>
   </header>
@@ -39,27 +39,28 @@ header {
   min-height: 700px;
   background-color: $grey;
 
-  .ranking {
-    color: $light-grey;
-    display: table;
-    margin: 0 auto;
-    margin-top: -20px;
-  }
+  nav {
+    padding-top: 50px;
+    .logo {
+      margin-left: 150px;
+      color: #fff;
+      font-size: 20px;
 
-  .user {
-    float: right;
-    margin-top: -20px;
-  }
-}
-nav {
-  padding-top: 50px;
-  .logo {
-    margin-left: 150px;
-    color: #fff;
-    font-size: 20px;
+      @media only screen and (max-width: 360px) {
+        margin-left: 10px;
+      }
+    }
+    .ranking {
+      color: $light-grey;
+      display: table;
+      margin: 0 auto;
+      margin-top: -20px;
+    }
 
-    @media only screen and (max-width: 360px) {
-      margin-left: 10px;
+    .user {
+      float: right;
+      margin-top: -35px;
+      margin-right: 150px;
     }
   }
 }
@@ -103,9 +104,14 @@ section {
 // BREAKPOINTS
 
 @media only screen and (max-width: 700px) {
-  nav {
-    .logo {
-      margin-left: 50px;
+  header {
+    nav {
+      .logo {
+        margin-left: 50px;
+      }
+      .user {
+        margin-right: 50px;
+      }
     }
   }
   section {
@@ -122,6 +128,19 @@ section {
     }
     .bottom-paragraph {
       margin: 20px auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  header {
+    nav {
+      .logo {
+        margin-left: 20px;
+      }
+      .user {
+        margin-right: 20px;
+      }
     }
   }
 }

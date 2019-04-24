@@ -17,7 +17,7 @@
       <span>Write CSS blindfolded!</span>
       <div
         class="upper-paragraph"
-      >Given the image try to transform it to CSS, after time see the results of all players and choose the best one.</div>
+      >Given the image try to transform it to CSS, after time see the results of all players and select the best one.</div>
       <div
         class="bottom-paragraph"
       >You can play without account created, although your account will not appear in the ranking.</div>
