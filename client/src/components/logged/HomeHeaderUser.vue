@@ -12,7 +12,6 @@ export default {
     logout() {
       fetch("http://localhost:8081/auth/logout", {
         method: "GET",
-        mode: "no-cors",
         credentials: "include"
       })
         .then(res => console.log(res))

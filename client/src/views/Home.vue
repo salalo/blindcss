@@ -36,7 +36,8 @@ export default {
 
   mounted() {
     fetch("http://localhost:8081/auth/checkAuth", {
-      method: "GET"
+      method: "GET",
+      credentials: "include"
     })
       .then(res => {
         console.log(res);

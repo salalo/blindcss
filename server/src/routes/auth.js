@@ -32,8 +32,8 @@ export default () => {
   );
 
   api.get('/checkAuth', (req, res) => {
-    // console.log(req.isAuthenticated());
-    req.isAuthenticated() ? res.send(req.user) : res.send('unlogged');
+    console.log(req.isAuthenticated());
+    // req.isAuthenticated() ? res.send(req.user) : res.send('unlogged');
   });
 
   api.get('/logout', (req, res) => {

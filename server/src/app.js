@@ -1,8 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
+import session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import session from 'express-session';
 import { join } from 'path';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -28,6 +28,9 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.set('views', join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,8 +38,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.set('trust proxy', 1); // trust first proxy
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use('/auth', auth());
 
