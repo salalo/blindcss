@@ -18,6 +18,7 @@ import Header from "@/components/logged/HomeHeader.vue";
 import Main from "@/components/logged/HomeLobbies.vue";
 import Footer from "@/components/shared/HomeFooter.vue";
 import VueCookies from "vue-cookies";
+import axios from "axios";
 
 export default {
   data() {
@@ -35,18 +36,15 @@ export default {
   },
 
   mounted() {
-    fetch("http://localhost:8081/auth/checkAuth", {
-      method: "GET",
-      credentials: "include"
-    })
+    axios.defaults.withCredentials = true;
+    axios.get("http://localhost:8081/auth/checkAuth")
       .then(res => {
-        console.log(res);
-        // res.data == "unlogged"
-        //   ? (this.isLogged = false)
-        //   : (this.isLogged = true);
+        res.data === "unlogged"
+          ? (this.isLogged = false)
+          : (this.isLogged = true);
       })
       .catch(err => console.error(err));
-    console.log(this.isLogged);
+    console.log("isLogged:", this.isLogged);
   }
 };
 </script>
