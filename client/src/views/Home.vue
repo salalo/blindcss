@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLogged">
+  <div v-if="true">
     <Header></Header>
     <Main></Main>
     <Footer></Footer>
@@ -14,10 +14,9 @@
 <script>
 import UnHeader from "@/components/unlogged/HomeHeader.vue";
 import UnMain from "@/components/unlogged/HomeMain.vue";
-import Header from "@/components/logged/HomeHeader.vue";
-import Main from "@/components/logged/HomeLobbies.vue";
+import Header from "@/components/logged/home/Header.vue";
+import Main from "@/components/logged/home/Lobbies.vue";
 import Footer from "@/components/shared/HomeFooter.vue";
-import VueCookies from "vue-cookies";
 import axios from "axios";
 
 export default {
@@ -37,14 +36,15 @@ export default {
 
   mounted() {
     axios.defaults.withCredentials = true;
-    axios.get("http://localhost:8081/auth/checkAuth")
+    axios
+      .get("http://localhost:8081/auth/checkAuth")
       .then(res => {
         res.data === "unlogged"
           ? (this.isLogged = false)
           : (this.isLogged = true);
       })
       .catch(err => console.error(err));
-    console.log("isLogged:", this.isLogged);
+    // console.log("isLogged:", this.isLogged);
   }
 };
 </script>

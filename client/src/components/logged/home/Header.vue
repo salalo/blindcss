@@ -1,11 +1,6 @@
 <template>
   <header>
-    <nav>
-      <span class="logo">BlindCSS</span>
-      <span class="ranking">#1204</span>
-      <User class="user"></User>
-    </nav>
-
+    <Menu></Menu>
     <section>
       <span>Write CSS blindfolded!</span>
       <div
@@ -20,13 +15,13 @@
 </template>
 
 <script>
-import Button from "../shared/Button.vue";
-import User from "../logged/HomeHeaderUser.vue";
+import Button from "../../shared/Button.vue";
+import Menu from "../Menu.vue";
 
 export default {
   components: {
     Button,
-    User
+    Menu
   }
 };
 </script>
@@ -38,31 +33,6 @@ header {
   height: 100vh;
   min-height: 700px;
   background-color: $grey;
-
-  nav {
-    padding-top: 50px;
-    .logo {
-      margin-left: 150px;
-      color: #fff;
-      font-size: 20px;
-
-      @media only screen and (max-width: 360px) {
-        margin-left: 10px;
-      }
-    }
-    .ranking {
-      color: $light-grey;
-      display: table;
-      margin: 0 auto;
-      margin-top: -20px;
-    }
-
-    .user {
-      float: right;
-      margin-top: -35px;
-      margin-right: 150px;
-    }
-  }
 }
 section {
   margin-top: 300px;
@@ -104,16 +74,6 @@ section {
 // BREAKPOINTS
 
 @media only screen and (max-width: 700px) {
-  header {
-    nav {
-      .logo {
-        margin-left: 50px;
-      }
-      .user {
-        margin-right: 50px;
-      }
-    }
-  }
   section {
     margin-left: 10px;
     margin-right: 10px;
@@ -128,19 +88,6 @@ section {
     }
     .bottom-paragraph {
       margin: 20px auto;
-    }
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  header {
-    nav {
-      .logo {
-        margin-left: 20px;
-      }
-      .user {
-        margin-right: 20px;
-      }
     }
   }
 }

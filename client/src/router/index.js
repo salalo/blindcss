@@ -11,6 +11,10 @@ export default new Router({
     {
       path: '/',
       component: Home
+    },
+    {
+      path: '/lobby',
+      component: () => import('@/views/Lobby.vue')
     }
   ]
 });

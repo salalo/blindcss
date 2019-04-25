@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="lobbies-container">
     <p>Join or create a new lobby!</p>
     <i class="material-icons create-lobby-btn">add_circle</i>
     <div class="sort">
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Button from "../shared/Button.vue";
-import Lobby from "../logged/HomeLobbiesLobby.vue";
+import Button from "../../shared/Button.vue";
+import Lobby from "./LobbiesLobby.vue";
 
 export default {
   components: {
@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/stylesheets/master.scss";
 
-.container {
+.lobbies-container {
   background-color: $white;
   color: $grey;
 

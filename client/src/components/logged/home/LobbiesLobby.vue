@@ -1,17 +1,19 @@
 <template>
-  <div class="lobby-container">
-    <div class="players">
-      <div class="player"></div>
-      <div class="player"></div>
-      <div class="player"></div>
-      <div class="player"></div>
-      <div class="player"></div>
+  <router-link to="/lobby">
+    <div class="lobby-container">
+      <div class="players">
+        <div class="player"></div>
+        <div class="player"></div>
+        <div class="player"></div>
+        <div class="player"></div>
+        <div class="player"></div>
+      </div>
+      <div class="countdown">
+        <span>CODING STARTS IN</span>
+        <div class="countdown-timer">12s</div>
+      </div>
     </div>
-    <div class="countdown">
-      <span>CODING STARTS IN</span>
-      <div class="countdown-timer">12s</div>
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
