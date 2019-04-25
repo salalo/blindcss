@@ -62,6 +62,10 @@ export default {};
     transform: translateY(-50%);
     margin-right: 0;
 
+    span {
+      color: $grey;
+    }
+
     &-timer {
       color: $main;
       font-size: 50px;

@@ -6,14 +6,14 @@
 
 <script>
 import VueCookies from "vue-cookies";
+import axios from "axios";
 
 export default {
   methods: {
     logout() {
-      fetch("http://localhost:8081/auth/logout", {
-        method: "GET",
-        credentials: "include"
-      })
+      axios.defaults.withCredentials = true;
+      axios
+        .get("http://localhost:8081/auth/logout")
         .then(res => console.log(res))
         .catch(err => console.error(err));
       VueCookies.remove("SESS");
