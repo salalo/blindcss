@@ -48,26 +48,22 @@ nav {
 // BREAKPOINTS
 
 @media only screen and (max-width: 700px) {
-  header {
-    nav {
-      .logo {
-        margin-left: 50px;
-      }
-      .user {
-        margin-right: 50px;
-      }
+  nav {
+    .logo {
+      margin-left: 50px;
+    }
+    .user {
+      margin-right: 50px;
     }
   }
 }
 @media only screen and (max-width: 400px) {
-  header {
-    nav {
-      .logo {
-        margin-left: 20px;
-      }
-      .user {
-        margin-right: 20px;
-      }
+  nav {
+    .logo {
+      margin-left: 20px;
+    }
+    .user {
+      margin-right: 20px;
     }
   }
 }

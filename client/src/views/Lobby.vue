@@ -42,7 +42,7 @@ export default {
 }
 
 main {
-  margin-top: 10%;
+  margin-top: 20vh;
 
   .countdown {
     max-width: 300px;
@@ -65,8 +65,8 @@ main {
 
   .rules {
     margin: 0 auto;
-    max-width: 600px;
-    margin-top: 10%;
+    max-width: 570px;
+    margin-top: 20vh;
 
     span {
       font-size: 50px;
@@ -80,6 +80,53 @@ main {
 
     &-paragraphs {
       border-left: 5px solid $main;
+    }
+
+    @media only screen and (max-width: 800px) {
+      margin-left: 100px;
+    }
+  }
+}
+
+// BREAKPOINTS
+
+@media only screen and (max-width: 700px) {
+  main {
+    .countdown {
+      margin-top: 30vh;
+    }
+    .rules {
+      position: absolute;
+      bottom: 20px;
+      margin-left: calc(50vw - 250px);
+      span {
+        font-size: 30px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  main {
+    margin-top: 10vh;
+
+    .countdown {
+      margin-top: 10vh;
+
+      span {
+        font-size: 20px;
+      }
+      &-timer {
+        font-size: 50px;
+      }
+    }
+    .rules {
+      margin-left: 10px;
+      margin-top: 10vh;
+      position: unset;
     }
   }
 }
