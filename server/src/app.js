@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 
 import auth from './routes/auth.js';
+import game from './routes/game.js';
 import keys from './config/keys.js';
 import socialAuth from './actions/auth.js';
 
@@ -40,6 +41,7 @@ app.use(morgan('dev'));
 app.set('trust proxy', 1); // trust first proxy
 
 app.use('/auth', auth());
+app.use('/game', game());
 
 app.use(
   cors({

@@ -5,7 +5,7 @@
     <main>
       <div class="countdown">
         <span>CODING STARTS IN</span>
-        <div class="countdown-timer">12s</div>
+        <div class="countdown-timer">{{timeleft}}s</div>
       </div>
       <div class="rules">
         <span>RULES</span>
@@ -23,11 +23,36 @@
 <script>
 import Menu from "../components/logged/Menu.vue";
 import Players from "../components/logged/lobby/Players.vue";
+import axios from "axios";
 
 export default {
+  data() {
+    return {
+      timeleft: 20
+    };
+  },
+
   components: {
     Menu,
     Players
+  },
+
+  // countdown only begins when lobby (players component) has 5 users
+  mounted() {
+    axios.defaults.withCredentials = true;
+
+    axios
+      .get("http://localhost:8081/game/checkLobby")
+      .then(res => {
+        if (res.data.lobbyIsFull) {
+          let downloadTimer = setInterval(() => {
+            this.timeleft--;
+            // redirect to /game
+            this.timeleft <= 0 ? clearInterval(downloadTimer) : null;
+          }, 1000);
+        }
+      })
+      .catch(err => console.error(err));
   }
 };
 </script>
