@@ -15,6 +15,10 @@ export default new Router({
     {
       path: '/lobby',
       component: () => import('@/views/Lobby.vue')
+    },
+    {
+      path: '/game',
+      component: () => import('@/views/Game.vue')
     }
   ]
 });

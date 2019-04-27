@@ -22,7 +22,7 @@
 
 <script>
 import Menu from "../components/logged/Menu.vue";
-import Players from "../components/logged/lobby/Players.vue";
+import Players from "../components/logged/Players.vue";
 import axios from "axios";
 
 export default {

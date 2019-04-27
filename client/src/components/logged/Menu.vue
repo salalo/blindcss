@@ -1,6 +1,8 @@
 <template>
   <nav>
-    <span class="logo">BlindCSS</span>
+    <router-link to="/game">
+      <span class="logo">BlindCSS</span>
+    </router-link>
     <span class="ranking">#1204</span>
     <User class="user"></User>
   </nav>

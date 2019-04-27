@@ -1,5 +1,5 @@
 <template>
-  <div v-if="true">
+  <div v-if="isLogged">
     <Header></Header>
     <Main></Main>
     <Footer></Footer>
