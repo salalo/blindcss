@@ -1,112 +1,85 @@
 <template>
   <div>
-    <codemirror
-      v-model="code"
-      :options="cmOption"
-      @cursorActivity="onCmCursorActivity"
-      @ready="onCmReady"
-      @focus="onCmFocus"
-      @blur="onCmBlur"
-    ></codemirror>
-    <codemirror
-      v-model="code"
-      :options="cmOption"
-      @cursorActivity="onCmCursorActivity"
-      @ready="onCmReady"
-      @focus="onCmFocus"
-      @blur="onCmBlur"
-    ></codemirror>
-    <codemirror
-      v-model="code"
-      :options="cmOption"
-      @cursorActivity="onCmCursorActivity"
-      @ready="onCmReady"
-      @focus="onCmFocus"
-      @blur="onCmBlur"
-    ></codemirror>
+    <codemirror v-model="html" :options="htmlOption" class="editor-html"></codemirror>
+    <codemirror v-model="css" :options="cssOption" class="editor-css"></codemirror>
   </div>
 </template>
 
 <script>
 import { codemirror } from "vue-codemirror";
-// language
-import "codemirror/mode/javascript/javascript.js";
-// theme css
-import "codemirror/theme/monokai.css";
-// active-line.js
-import "codemirror/addon/selection/active-line.js";
-// styleSelectedText
-import "codemirror/addon/selection/mark-selection.js";
-import "codemirror/addon/search/searchcursor.js";
-// highlightSelectionMatches
-import "codemirror/addon/scroll/annotatescrollbar.js";
-import "codemirror/addon/search/matchesonscrollbar.js";
-import "codemirror/addon/search/searchcursor.js";
-import "codemirror/addon/search/match-highlighter.js";
-// keyMap
-import "codemirror/mode/clike/clike.js";
-import "codemirror/addon/edit/matchbrackets.js";
-import "codemirror/addon/comment/comment.js";
-import "codemirror/addon/dialog/dialog.js";
-import "codemirror/addon/dialog/dialog.css";
-import "codemirror/addon/search/searchcursor.js";
-import "codemirror/addon/search/search.js";
-import "codemirror/keymap/sublime.js";
-// foldGutter
-import "codemirror/addon/fold/foldgutter.css";
-import "codemirror/addon/fold/brace-fold.js";
-import "codemirror/addon/fold/comment-fold.js";
-import "codemirror/addon/fold/foldcode.js";
-import "codemirror/addon/fold/foldgutter.js";
-import "codemirror/addon/fold/indent-fold.js";
-import "codemirror/addon/fold/markdown-fold.js";
-import "codemirror/addon/fold/xml-fold.js";
 
 export default {
+  components: {
+    codemirror
+  },
   data() {
-    const code = `const a = 10;`;
+    const html = `<html style="color: green">
+  <!-- this is a comment -->
+  <head>
+    <title>HTML Example</title>
+  </head>
+  <body>
+    <span>HELLO</span>
+  </body>
+</html>`;
+    const css = `.abc {
+  color: $red;
+  background-color: blue;
+
+  span {
+    display: inline-block;
+    font-size: 20px;
+  }
+}`;
     return {
-      code,
-      cmOption: {
+      html,
+      css,
+      htmlOption: {
         tabSize: 2,
-        foldGutter: true,
-        styleActiveLine: true,
-        // lineNumbers: true,
         line: true,
-        // keyMap: "sublime",as
-        mode: "text/javascript",
+        lineNumbers: true,
+        styleActiveLine: true,
+        styleSelectedText: true,
+        autoCloseTags: true,
+        autoCloseBrackets: true,
+        foldGutter: true,
+        showCursorWhenSelecting: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        mode: "text/html",
+        theme: "gruvbox-dark",
+        keyMap: "sublime",
+        extraKeys: { Ctrl: "autocomplete" },
+        highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true }
+      },
+      cssOption: {
+        tabSize: 2,
+        line: true,
+        lineNumbers: true,
+        styleActiveLine: true,
+        styleSelectedText: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        foldGutter: true,
+        showCursorWhenSelecting: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        mode: "text/x-scss",
         theme: "monokai",
-        extraKeys: {
-          F11(cm) {
-            cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-          },
-          Esc(cm) {
-            if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-          }
+        keyMap: "sublime",
+        extraKeys: { Ctrl: "autocomplete" },
+        highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+        // hint.js options
+        hintOptions: {
+          completeSingle: false
         }
       }
     };
-  },
-  components: {
-    codemirror
   }
-
-  // methods: {
-  //   onCmCursorActivity(codemirror) {
-  //     console.log("onCmCursorActivity", codemirror);
-  //   },
-  //   onCmReady(codemirror) {
-  //     console.log("onCmReady", codemirror);
-  //   },
-  //   onCmFocus(codemirror) {
-  //     console.log("onCmFocus", codemirror);
-  //   },
-  //   onCmBlur(codemirror) {
-  //     console.log("onCmBlur", codemirror);
-  //   }
-  // }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@/stylesheets/master.scss";
+
+.editor {
+}
 </style>
