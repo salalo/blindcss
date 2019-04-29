@@ -47,8 +47,7 @@ export default {
         if (res.data.lobbyIsFull) {
           let downloadTimer = setInterval(() => {
             this.timeleft--;
-            // redirect to /game
-            this.timeleft <= 0 ? clearInterval(downloadTimer) : null;
+            this.timeleft <= 0 ? this.$router.push("/game") : null;
           }, 1000);
         }
       })

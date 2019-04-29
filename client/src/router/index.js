@@ -19,6 +19,10 @@ export default new Router({
     {
       path: '/game',
       component: () => import('@/views/Game.vue')
+    },
+    {
+      path: '/voting',
+      component: () => import('@/views/Voting.vue')
     }
   ]
 });

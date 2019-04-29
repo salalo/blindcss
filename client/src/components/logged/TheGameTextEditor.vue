@@ -1,7 +1,24 @@
 <template>
-  <div>
-    <codemirror v-model="html" :options="htmlOption" class="editor-html"></codemirror>
-    <codemirror v-model="css" :options="cssOption" class="editor-css"></codemirror>
+  <div class="editor-container">
+    <codemirror
+      v-model="html"
+      :options="htmlOption"
+      class="editor editor-html"
+      @inputRead="inputCheck"
+      @blur="unFocus"
+      @ready="htmlMounted"
+    ></codemirror>
+    <codemirror
+      v-model="css"
+      :options="cssOption"
+      class="editor editor-css"
+      @inputRead="inputCheck"
+      @blur="unFocus"
+      @ready="cssMounted"
+    ></codemirror>
+    <div class="editor-container--image">
+      <img src="@/assets/3.jpg" alt="image to code">
+    </div>
   </div>
 </template>
 
@@ -31,6 +48,7 @@ export default {
     font-size: 20px;
   }
 }`;
+
     return {
       html,
       css,
@@ -48,7 +66,7 @@ export default {
         mode: "text/html",
         theme: "gruvbox-dark",
         keyMap: "sublime",
-        extraKeys: { Ctrl: "autocomplete" },
+        extraKeys: { Alt: "autocomplete" },
         highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true }
       },
       cssOption: {
@@ -63,16 +81,34 @@ export default {
         showCursorWhenSelecting: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         mode: "text/x-scss",
-        theme: "monokai",
+        theme: "gruvbox-dark",
         keyMap: "sublime",
-        extraKeys: { Ctrl: "autocomplete" },
+        extraKeys: { Alt: "autocomplete" },
         highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
-        // hint.js options
         hintOptions: {
           completeSingle: false
         }
       }
     };
+  },
+  methods: {
+    cssMounted(cm) {
+      cm.setSize(null, "100vh");
+    },
+    htmlMounted(cm) {
+      cm.setSize(null, "40vh");
+    },
+
+    // checks if user is pasting code (cheting)
+    inputCheck(cm, obj) {
+      obj.origin === "paste"
+        ? (this.html =
+            "<!-- Please don't paste code in the editor while playing. -->") &&
+          (this.css = "// Please don't paste code in the editor while playing.")
+        : null;
+    },
+
+    unFocus(cm) {}
   }
 };
 </script>
@@ -80,6 +116,36 @@ export default {
 <style lang="scss" scoped>
 @import "@/stylesheets/master.scss";
 
-.editor {
+.editor-container {
+  max-width: 80vw;
+
+  .editor {
+    width: 50vw;
+    float: right;
+    font-size: 16px;
+
+    &-css {
+      width: 30vw;
+    }
+  }
+
+  &--image {
+    width: 50vw;
+    height: 60vh;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    img {
+      max-width: 50vw;
+      max-height: 60vh;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
 }
 </style>

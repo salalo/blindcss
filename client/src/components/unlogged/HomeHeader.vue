@@ -81,7 +81,7 @@ nav {
   }
 }
 section {
-  margin: 350px 0 0 150px;
+  margin: calc(40vh - 100px) 0 0 150px;
 
   span {
     font-size: 50px;

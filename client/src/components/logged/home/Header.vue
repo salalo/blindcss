@@ -35,7 +35,7 @@ header {
   background-color: $grey;
 }
 section {
-  margin-top: 300px;
+  margin-top: calc(40vh - 100px);
   text-align: center;
   span {
     font-size: 50px;
@@ -57,18 +57,6 @@ section {
   .play-btn {
     margin: 0 auto;
   }
-
-  @media only screen and (max-width: 360px) {
-    margin-top: 100px !important;
-  }
-
-  @media only screen and (max-width: 500px) {
-    margin-top: 200px;
-  }
-
-  @media only screen and (max-height: 768px) {
-    margin-top: 200px;
-  }
 }
 
 // BREAKPOINTS
@@ -79,7 +67,7 @@ section {
     margin-right: 10px;
 
     span {
-      font-size: 35px;
+      font-size: 30px;
     }
     .upper-paragraph {
       font-size: 16px;

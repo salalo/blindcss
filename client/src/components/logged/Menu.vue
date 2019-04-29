@@ -1,8 +1,6 @@
 <template>
   <nav>
-    <router-link to="/game">
-      <span class="logo">BlindCSS</span>
-    </router-link>
+    <span class="logo">BlindCSS</span>
     <span class="ranking">#1204</span>
     <User class="user"></User>
   </nav>
@@ -23,6 +21,7 @@ export default {
 
 nav {
   padding-top: 50px;
+  max-height: 100px;
 
   .logo {
     margin-left: 150px;

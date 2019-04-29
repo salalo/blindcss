@@ -1,6 +1,6 @@
 <template>
   <div class="game-container">
-    <Players style="top: 15%;"></Players>
+    <Players></Players>
     <Editor class="editor"></Editor>
     <div class="countdown">
       <span>TIME LEFT</span>
@@ -24,7 +24,7 @@ export default {
 
   components: {
     Players,
-    Editor
+    Editor,
   }
 };
 </script>
@@ -46,7 +46,7 @@ export default {
   .countdown {
     position: absolute;
     bottom: 50px;
-    left: 100px;
+    left: 10vh;
 
     span {
       font-size: 20px;
