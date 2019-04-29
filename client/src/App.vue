@@ -41,5 +41,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow-x: hidden;
 }
 </style>

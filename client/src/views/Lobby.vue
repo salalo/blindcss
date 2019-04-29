@@ -47,7 +47,7 @@ export default {
         if (res.data.lobbyIsFull) {
           let downloadTimer = setInterval(() => {
             this.timeleft--;
-            this.timeleft <= 0 ? this.$router.push("/game") : null;
+            // this.timeleft <= 0 ? this.$router.push("/game") : null;
           }, 1000);
         }
       })

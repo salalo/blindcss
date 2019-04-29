@@ -24,7 +24,7 @@ export default {
 
   components: {
     Players,
-    Editor,
+    Editor
   }
 };
 </script>

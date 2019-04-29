@@ -59,7 +59,7 @@ export default {
     &:hover {
       @include transition(0s, $duration color);
       cursor: pointer;
-      color: $main;
+      color: $light-grey;
     }
   }
 
