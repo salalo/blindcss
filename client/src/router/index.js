@@ -23,6 +23,10 @@ export default new Router({
     {
       path: '/voting',
       component: () => import('@/views/Voting.vue')
+    },
+    {
+      path: '/final',
+      component: () => import('@/views/Final.vue')
     }
   ]
 });
