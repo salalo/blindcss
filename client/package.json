@@ -10,9 +10,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
+    "socket.io-client": "^2.2.0",
     "vue": "^2.6.6",
     "vue-codemirror": "^4.0.6",
-    "vue-cookies": "^1.5.13"
+    "vue-cookies": "^1.5.13",
+    "vue-socket.io-extended": "^3.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

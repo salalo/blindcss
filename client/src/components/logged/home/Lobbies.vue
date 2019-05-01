@@ -1,7 +1,7 @@
 <template>
   <div class="lobbies-container">
     <p>Join or create a new lobby!</p>
-    <i class="material-icons create-lobby-btn">add_circle</i>
+    <i class="material-icons create-lobby-btn" @click="createLobby">add_circle</i>
     <div class="sort">
       <span>SORT</span>
       <i class="material-icons">sort</i>
@@ -24,6 +24,14 @@ export default {
   components: {
     Button,
     Lobby
+  },
+  sockets: {
+    create_Lobby() {}
+  },
+  methods: {
+    createLobby() {
+      this.$socket.emit("create_lobby", "lobby?" + this.$socket.id);
+    }
   }
 };
 </script>

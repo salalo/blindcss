@@ -7,6 +7,7 @@ import { join } from 'path';
 import cors from 'cors';
 import mongoose, { MongooseDocument } from 'mongoose';
 import passport from 'passport';
+import socketIO from 'socket.io';
 
 import auth from './routes/auth.js';
 import game from './routes/game.js';
@@ -14,6 +15,21 @@ import keys from './config/keys.js';
 import socialAuth from './actions/auth.js';
 
 const app = express();
+const server = app.listen(process.env.PORT || 8081);
+const io = socketIO(server);
+
+io.on('connection', socket => {
+  console.log('User connected');
+
+  socket.on('create_lobby', lobby_id => {
+    socket.join(lobby_id);
+    console.log('lobby created', lobby_id);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
 
 app.use(
   session({
@@ -54,5 +70,3 @@ mongoose
   .connect(keys.mongodb.DB, { useNewUrlParser: true })
   .then(console.log('Connected successfully!'))
   .catch(err => console.error('\nCan not connect to the database\n\n' + err));
-
-app.listen(process.env.PORT || 8081);
