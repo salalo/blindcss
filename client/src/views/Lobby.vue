@@ -38,20 +38,20 @@ export default {
   },
 
   // countdown only begins when lobby (players component) has 5 users
-  mounted() {
+  async mounted() {
     axios.defaults.withCredentials = true;
 
-    axios
-      .get("http://localhost:8081/game/checkLobby")
-      .then(res => {
-        if (res.data.lobbyIsFull) {
-          let downloadTimer = setInterval(() => {
-            this.timeleft--;
-            // this.timeleft <= 0 ? this.$router.push("/game") : null;
-          }, 1000);
-        }
-      })
-      .catch(err => console.error(err));
+    try {
+      const res = await axios.get("http://localhost:8081/game/checkLobby");
+      if (res.data.lobbyIsFull) {
+        let downloadTimer = setInterval(() => {
+          this.timeleft--;
+          // this.timeleft <= 0 ? this.$router.push("/game") : null;
+        }, 1000);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
 </script>

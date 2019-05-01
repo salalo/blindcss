@@ -34,16 +34,18 @@ export default {
     Footer
   },
 
-  mounted() {
+  async mounted() {
     axios.defaults.withCredentials = true;
-    axios
-      .get("http://localhost:8081/auth/checkAuth")
-      .then(res => {
-        res.data === "unlogged"
-          ? (this.isLogged = false)
-          : (this.isLogged = true);
-      })
-      .catch(err => console.error(err));
+
+    try {
+      const res = await axios.get("http://localhost:8081/auth/checkAuth");
+
+      res.data === "unlogged"
+        ? (this.isLogged = false)
+        : (this.isLogged = true);
+    } catch (err) {
+      console.error(err);
+    }
     // console.log("isLogged:", this.isLogged);
   }
 };

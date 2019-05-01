@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { join } from 'path';
 import cors from 'cors';
-import mongoose from 'mongoose';
+import mongoose, { MongooseDocument } from 'mongoose';
 import passport from 'passport';
 
 import auth from './routes/auth.js';
@@ -50,12 +50,9 @@ app.use(
   })
 );
 
-// connect to database
-mongoose.connect(keys.mongodb.DB, { useNewUrlParser: true }).then(
-  () => {
-    console.log('\nConnected successfully!');
-  },
-  err => console.log('\nCan not connect to the database\n\n' + err)
-);
+mongoose
+  .connect(keys.mongodb.DB, { useNewUrlParser: true })
+  .then(console.log('Connected successfully!'))
+  .catch(err => console.error('\nCan not connect to the database\n\n' + err));
 
 app.listen(process.env.PORT || 8081);

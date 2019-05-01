@@ -13,13 +13,11 @@ let UserSchema = new mongoose.Schema({
   },
 
   googleID: {
-    type: String,
-    unique: true
+    type: String
   },
 
   facebookID: {
-    type: String,
-    unique: true
+    type: String
   }
 });
 

@@ -19,21 +19,28 @@ passport.use(
       clientSecret: keys.google.secret,
       callbackURL: keys.google.cb
     },
-    (token, tokenSecret, profile, done) => {
-      User.findOne({ googleID: profile.id })
-        .then(currentUser => {
-          currentUser
-            ? done(null, currentUser)
-            : new User({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                googleID: profile.id
-              })
-                .save()
-                .then(newUser => done(null, newUser))
-                .catch(err => console.error(err));
-        })
-        .catch(err => console.error(err));
+    async (token, tokenSecret, profile, done) => {
+      try {
+        let user = await User.findOne({ googleID: profile.id });
+        // user exists => login, else register
+        if (user) done(null, user);
+        else {
+          try {
+            let newUser = await new User({
+              name: profile.displayName,
+              email: profile.emails[0].value,
+              googleID: profile.id
+            }).save();
+            done(null, newUser);
+          } catch (error) {
+            console.error(error);
+            done(error);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        done(null, false);
+      }
     }
   )
 );
@@ -45,21 +52,28 @@ passport.use(
       clientSecret: keys.fb.secret,
       callbackURL: keys.fb.cb
     },
-    (token, tokenSecret, profile, done) => {
-      User.findOne({ facebookID: profile.id })
-        .then(currentUser => {
-          currentUser
-            ? done(null, currentUser)
-            : new User({
-                name: profile.displayName,
-                email: profile.email || 'email not found',
-                facebookID: profile.id
-              })
-                .save()
-                .then(newUser => done(null, newUser))
-                .catch(err => console.error(err));
-        })
-        .catch(err => console.error(err));
+    async (token, tokenSecret, profile, done) => {
+      try {
+        let user = await User.findOne({ facebookID: profile.id });
+        // user exists => login, else register
+        if (user) done(null, user);
+        else {
+          try {
+            let newUser = await new User({
+              name: profile.displayName,
+              email: profile.email || 'email not found',
+              facebookID: profile.id
+            }).save();
+            done(null, newUser);
+          } catch (error) {
+            console.error(error);
+            done(error);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        done(null, false);
+      }
     }
   )
 );

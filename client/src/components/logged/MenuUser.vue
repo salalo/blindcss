@@ -10,14 +10,16 @@ import axios from "axios";
 
 export default {
   methods: {
-    logout() {
+    async logout() {
       axios.defaults.withCredentials = true;
-      axios
-        .get("http://localhost:8081/auth/logout")
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
-      VueCookies.remove("SESS");
-      location.reload();
+      try {
+        axios.get("http://localhost:8081/auth/logout");
+      } catch (err) {
+        console.error(err);
+      }
+
+      await VueCookies.remove("SESS");
+      await location.reload();
     }
   }
 };
