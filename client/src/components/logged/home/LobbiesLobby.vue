@@ -1,25 +1,29 @@
 <template>
-  <router-link to="/lobby">
-    <div class="lobby-container">
-      <span>{{lobby_id}}</span>
-      <div class="players">
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
-        <div class="player"></div>
-      </div>
-      <div class="countdown">
-        <span>CODING STARTS IN</span>
-        <div class="countdown-timer">12s</div>
-      </div>
+  <div class="lobby-container">
+    <div class="players">
+      <span>{{ lobbyId }}</span>
+      <div class="player"></div>
+      <div class="player"></div>
+      <div class="player"></div>
+      <div class="player"></div>
+      <div class="player"></div>
     </div>
-  </router-link>
+    <div class="countdown">
+      <span>CODING STARTS IN</span>
+      <div class="countdown-timer">12s</div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ["lobby_id"]
+  props: ["lobbyId"],
+  data() {
+    return {
+      players: [],
+      timeLeft: ""
+    };
+  }
 };
 </script>
 

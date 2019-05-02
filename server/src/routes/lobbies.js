@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import lobby from '../actions/lobby.js';
+import { returnLobbies } from '../actions/lobby.js';
 
 export default () => {
   const api = Router();
@@ -22,7 +22,7 @@ export default () => {
     res.append('Access-Control-Allow-Credentials', 'true');
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.append('Access-Control-Allow-Headers', 'Content-Type');
-    res.json(lobby.returnLobbies());
+    res.json(returnLobbies());
   });
 
   return api;

@@ -17,15 +17,9 @@ import UnMain from "@/components/unlogged/HomeMain.vue";
 import Header from "@/components/logged/home/Header.vue";
 import Main from "@/components/logged/home/Lobbies.vue";
 import Footer from "@/components/shared/HomeFooter.vue";
-import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      isLogged: false
-    };
-  },
-
   components: {
     UnHeader,
     UnMain,
@@ -34,19 +28,20 @@ export default {
     Footer
   },
 
-  async mounted() {
-    axios.defaults.withCredentials = true;
+  computed: {
+    ...mapState("user", {
+      isLogged: store => store.isLogged
+    })
+  },
 
-    try {
-      const res = await axios.get("http://localhost:8081/auth/checkAuth");
+  mounted() {
+    this.$store.dispatch("user/login");
+    this.$store.dispatch("user/getUserData");
 
-      res.data === "unlogged"
-        ? (this.isLogged = false)
-        : (this.isLogged = true);
-    } catch (err) {
-      console.error(err);
+    // facebook callback fix
+    if (window.location.hash && window.location.hash == "#_=_") {
+      window.location.hash = "";
     }
-    // console.log("isLogged:", this.isLogged);
   }
 };
 </script>

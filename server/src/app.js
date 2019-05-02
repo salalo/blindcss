@@ -11,7 +11,7 @@ import socketIO from 'socket.io';
 
 import auth from './routes/auth.js';
 import lobbies from './routes/lobbies.js';
-import lobbiesManager from './actions/lobby.js';
+import { addLobby } from './actions/lobby.js';
 import keys from './config/keys.js';
 import socialAuth from './actions/auth.js';
 
@@ -24,7 +24,7 @@ io.on('connection', socket => {
 
   socket.on('create_lobby', lobby_id => {
     socket.join(lobby_id);
-    lobbiesManager.addLobby(lobby_id);
+    addLobby(lobby_id);
     // console.log('lobby created', lobby_id, lobbies);
   });
 

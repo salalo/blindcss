@@ -8,17 +8,15 @@ let lobbies = ['11111asd', 'asdasdasd', '213sada', 'asd123123', '000asd'];
 //   state === lobby ? countdown: "eg.12s" : countdown: null
 // }
 
-export default {
-  addLobby(lobbyId) {
-    // check if lobby doesn't exists
-    lobbies.includes(lobbyId)
-      ? console.log('lobby already exists')
-      : lobbies.push(lobbyId);
+export const addLobby = lobbyId => {
+  // check if lobby doesn't exists
+  lobbies.includes(lobbyId)
+    ? console.log('lobby already exists')
+    : lobbies.push(lobbyId);
 
-    console.log(lobbies);
-  },
+  console.log(lobbies);
+};
 
-  returnLobbies() {
-    return lobbies;
-  }
+export const returnLobbies = () => {
+  return lobbies;
 };

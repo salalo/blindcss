@@ -7,7 +7,7 @@
       <i class="material-icons">sort</i>
     </div>
 
-    <Lobby v-for="lobby in lobbies" :key="lobby"></Lobby>
+    <Lobby v-for="lobby in lobbies" :key="lobby" :lobbyId="lobby" @click.native="joinLobby(lobby)"></Lobby>
 
     <Button class="load-more-btn" type="outline" text="LOAD MORE" @click.native="loadMore"></Button>
   </div>
@@ -22,23 +22,31 @@ export default {
   data() {
     return {
       lobbiesToShow: 4,
-      lobbies: []
+      lobbies: [],
+      usersId: ""
     };
   },
   components: {
     Button,
     Lobby
   },
+
   methods: {
     createLobby() {
       this.$socket.emit("create_lobby", this.$socket.id);
+      this.$store.dispatch("user/joinLobby", this.$socket.id);
+    },
+
+    joinLobby(lobby) {
+      this.$store.dispatch("user/joinLobby", lobby);
+      this.usersId = this.$store.state.user.about.id;
     },
 
     async loadMore() {
       axios.defaults.withCredentials = true;
 
       try {
-        let res = await axios.get("http://localhost:8081/lobbies/");
+        let res = await axios.get("http://localhost:8081/lobbies");
         this.lobbies = res.data;
       } catch (err) {
         console.error(err);
@@ -50,9 +58,9 @@ export default {
     axios.defaults.withCredentials = true;
 
     try {
-      let res = await axios.get("http://localhost:8081/lobbies/");
+      let res = await axios.get("http://localhost:8081/lobbies");
       // show only first 4
-      // TODO: show 4 that have most players or less left time etc
+      // TODO: SORTING show 4 that have most players or less left time etc
       this.lobbies = res.data.slice(0, 4);
     } catch (err) {
       console.error(err);
