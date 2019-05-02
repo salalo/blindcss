@@ -42,9 +42,9 @@ export default {
     axios.defaults.withCredentials = true;
 
     try {
-      const res = await axios.get("http://localhost:8081/game/checkLobby");
+      const res = await axios.get("http://localhost:8081/lobbies/checkLobby");
       if (res.data.lobbyIsFull) {
-        let downloadTimer = setInterval(() => {
+        setInterval(() => {
           this.timeleft--;
           // this.timeleft <= 0 ? this.$router.push("/game") : null;
         }, 1000);

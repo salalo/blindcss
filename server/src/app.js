@@ -10,7 +10,8 @@ import passport from 'passport';
 import socketIO from 'socket.io';
 
 import auth from './routes/auth.js';
-import game from './routes/game.js';
+import lobbies from './routes/lobbies.js';
+import lobbiesManager from './actions/lobby.js';
 import keys from './config/keys.js';
 import socialAuth from './actions/auth.js';
 
@@ -23,7 +24,8 @@ io.on('connection', socket => {
 
   socket.on('create_lobby', lobby_id => {
     socket.join(lobby_id);
-    console.log('lobby created', lobby_id);
+    lobbiesManager.addLobby(lobby_id);
+    // console.log('lobby created', lobby_id, lobbies);
   });
 
   socket.on('disconnect', () => {
@@ -57,7 +59,7 @@ app.use(morgan('dev'));
 app.set('trust proxy', 1); // trust first proxy
 
 app.use('/auth', auth());
-app.use('/game', game());
+app.use('/lobbies', lobbies());
 
 app.use(
   cors({

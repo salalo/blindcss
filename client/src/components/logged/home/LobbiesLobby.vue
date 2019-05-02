@@ -1,6 +1,7 @@
 <template>
   <router-link to="/lobby">
     <div class="lobby-container">
+      <span>{{lobby_id}}</span>
       <div class="players">
         <div class="player"></div>
         <div class="player"></div>
@@ -17,7 +18,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["lobby_id"]
+};
 </script>
 
 <style lang="scss" scoped>

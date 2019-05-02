@@ -7,30 +7,55 @@
       <i class="material-icons">sort</i>
     </div>
 
-    <Lobby></Lobby>
-    <Lobby></Lobby>
-    <Lobby></Lobby>
-    <Lobby></Lobby>
+    <Lobby v-for="lobby in lobbies" :key="lobby"></Lobby>
 
-    <Button class="load-more-btn" type="outline" text="LOAD MORE"></Button>
+    <Button class="load-more-btn" type="outline" text="LOAD MORE" @click.native="loadMore"></Button>
   </div>
 </template>
 
 <script>
 import Button from "../../shared/Button.vue";
 import Lobby from "./LobbiesLobby.vue";
+import axios from "axios";
 
 export default {
+  data() {
+    return {
+      lobbiesToShow: 4,
+      lobbies: []
+    };
+  },
   components: {
     Button,
     Lobby
   },
-  sockets: {
-    create_Lobby() {}
-  },
   methods: {
     createLobby() {
-      this.$socket.emit("create_lobby", "lobby?" + this.$socket.id);
+      this.$socket.emit("create_lobby", this.$socket.id);
+    },
+
+    async loadMore() {
+      axios.defaults.withCredentials = true;
+
+      try {
+        let res = await axios.get("http://localhost:8081/lobbies/");
+        this.lobbies = res.data;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  },
+
+  async mounted() {
+    axios.defaults.withCredentials = true;
+
+    try {
+      let res = await axios.get("http://localhost:8081/lobbies/");
+      // show only first 4
+      // TODO: show 4 that have most players or less left time etc
+      this.lobbies = res.data.slice(0, 4);
+    } catch (err) {
+      console.error(err);
     }
   }
 };
