@@ -18,6 +18,17 @@ let UserSchema = new mongoose.Schema({
 
   facebookID: {
     type: String
+  },
+
+  rank: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+
+  points: {
+    type: Number,
+    default: 500
   }
 });
 

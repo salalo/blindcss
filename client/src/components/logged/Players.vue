@@ -9,7 +9,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+
+  mounted() {
+    this.$store.watch(
+      state => {
+        return this.$store.state.lobby.users;
+      },
+      (newVal, oldVal) => {
+        console.log(oldVal, newVal);
+      }
+    );
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -34,8 +49,8 @@ export default {};
 // MOBILE
 
 /* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
+  Device = Most of the Smartphones Mobiles (Portrait)
+  Screen = B/w 320px to 479px
 */
 @media (min-width: 320px) and (max-width: 500px) {
   .players-container {

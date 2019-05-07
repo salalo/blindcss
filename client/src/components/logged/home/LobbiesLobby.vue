@@ -1,7 +1,6 @@
 <template>
   <div class="lobby-container">
     <div class="players">
-      <span>{{ lobbyId }}</span>
       <div class="player"></div>
       <div class="player"></div>
       <div class="player"></div>

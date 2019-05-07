@@ -7,7 +7,7 @@ export const lobby = {
     id: '',
     users: [],
     timeLeft: '',
-    state: 'lobby' || 'game' || 'voting'
+    state: 'none' || 'lobby' || 'game' || 'voting'
   },
   mutations,
   actions

@@ -1,6 +1,7 @@
-import axios from 'axios';
-import { router } from '@/router/index.js';
+export const addPlayer = ({ commit }, userID) => {
+  commit('ADD_PLAYER_TO_LOBBY', userID);
+};
 
-export const login = async ({ commit }) => {
-  axios.defaults.withCredentials = true;
+export const removePlayer = ({ commit }, userID) => {
+  commit('REMOVE_PLAYER_FROM_LOBBY', userID);
 };

@@ -22,8 +22,7 @@ export default {
   data() {
     return {
       lobbiesToShow: 4,
-      lobbies: [],
-      usersId: ""
+      lobbies: []
     };
   },
   components: {
@@ -33,13 +32,17 @@ export default {
 
   methods: {
     createLobby() {
-      this.$socket.emit("create_lobby", this.$socket.id);
-      this.$store.dispatch("user/joinLobby", this.$socket.id);
+      this.$socket.emit("create_lobby", this.$socket.io.engine.id);
+      this.$store.dispatch("user/joinLobby", this.$socket.io.engine.id);
+      this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
     },
 
     joinLobby(lobby) {
+      //set socket id to lobby's id
+      this.$socket.id = lobby;
+      this.$socket.emit("join_lobby", lobby);
       this.$store.dispatch("user/joinLobby", lobby);
-      this.usersId = this.$store.state.user.about.id;
+      this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
     },
 
     async loadMore() {

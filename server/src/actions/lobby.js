@@ -14,7 +14,7 @@ export const addLobby = lobbyId => {
     ? console.log('lobby already exists')
     : lobbies.push(lobbyId);
 
-  console.log(lobbies);
+  // console.log(lobbies);
 };
 
 export const returnLobbies = () => {

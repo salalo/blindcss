@@ -38,20 +38,22 @@ export default {
   },
 
   // countdown only begins when lobby (players component) has 5 users
-  async mounted() {
-    axios.defaults.withCredentials = true;
-
-    try {
-      const res = await axios.get("http://localhost:8081/lobbies/checkLobby");
-      if (res.data.lobbyIsFull) {
-        setInterval(() => {
-          this.timeleft--;
-          // this.timeleft <= 0 ? this.$router.push("/game") : null;
-        }, 1000);
+  mounted() {
+    this.$store.watch(
+      state => {
+        return this.$store.state.lobby.users.length;
+      },
+      (usersNow, usersBefore) => {
+        usersNow === 5
+          ? setInterval(() => {
+              this.timeleft--;
+              this.timeleft <= 0
+                ? this.$router.push("/game?" + this.$socket.id)
+                : null;
+            }, 1000)
+          : console.log("Lobby.vue: lobby is not full");
       }
-    } catch (err) {
-      console.error(err);
-    }
+    );
   }
 };
 </script>

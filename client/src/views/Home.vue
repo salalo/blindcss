@@ -6,7 +6,7 @@
   </div>
   <div v-else>
     <UnHeader></UnHeader>
-    <UnMain></UnMain>
+    <Main></Main>
     <Footer></Footer>
   </div>
 </template>
@@ -38,6 +38,18 @@ export default {
     this.$store.dispatch("user/login");
     this.$store.dispatch("user/getUserData");
 
+    // manage user being in lobby or not
+    if (
+      window.location.pathname !== "/lobby" &&
+      window.location.pathname !== "/game"
+    ) {
+      this.$store.dispatch("user/leaveLobby");
+
+      this.$store.dispatch(
+        "lobby/removePlayer",
+        this.$store.state.user.about.id
+      );
+    }
     // facebook callback fix
     if (window.location.hash && window.location.hash == "#_=_") {
       window.location.hash = "";

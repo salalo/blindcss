@@ -25,7 +25,12 @@ io.on('connection', socket => {
   socket.on('create_lobby', lobby_id => {
     socket.join(lobby_id);
     addLobby(lobby_id);
-    // console.log('lobby created', lobby_id, lobbies);
+    console.log('Lobby: ', lobby_id, 'created.');
+  });
+
+  socket.on('join_lobby', id => {
+    socket.join(id);
+    console.log('Joined to lobby: ', id);
   });
 
   socket.on('disconnect', () => {
