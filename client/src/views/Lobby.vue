@@ -1,7 +1,7 @@
 <template>
   <div class="waiting_room-container">
     <Menu></Menu>
-    <Players></Players>
+    <Players :home="false"></Players>
     <main>
       <div class="countdown">
         <span>CODING STARTS IN</span>

@@ -2,6 +2,7 @@ let lobbies = [
   {
     id: 'Lobby0',
     state: 'lobby',
+    timeLeft: 8,
     users: [
       { id: 'asd', socketId: '123asd', owner: false },
       { id: 'dsa', socketId: 'dsa321', owner: false }
@@ -10,6 +11,7 @@ let lobbies = [
   {
     id: 'Lobby1',
     state: 'lobby',
+    timeLeft: 6,
     users: [
       { id: 'qwe', socketId: '123qwe', owner: false },
       { id: 'ewq', socketId: 'ewq321', owner: false }
@@ -29,6 +31,7 @@ export const createLobby = (lobbyId, userId, socketId) => {
     let newLobby = new Object({
       id: lobbyId,
       state: 'lobby',
+      timeLeft: 10,
       users: [
         {
           id: userId,

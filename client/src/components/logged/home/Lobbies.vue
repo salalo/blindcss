@@ -7,7 +7,14 @@
       <i class="material-icons">sort</i>
     </div>
 
-    <Lobby v-for="lobby in lobbies" :key="lobby" :lobbyId="lobby" @click.native="joinLobby(lobby)"></Lobby>
+    <Players
+      home="true"
+      v-for="lobby in lobbies"
+      :key="lobby"
+      :lobbyId="lobby.id"
+      :users="lobby.users"
+      :timeLeft="lobby.timeLeft"
+    ></Players>
 
     <Button class="load-more-btn" type="outline" text="LOAD MORE" @click.native="loadMore"></Button>
   </div>
@@ -15,19 +22,18 @@
 
 <script>
 import Button from "../../shared/Button.vue";
-import Lobby from "./LobbiesLobby.vue";
+import Players from "../Players.vue";
 import axios from "axios";
 
 export default {
   data() {
     return {
-      lobbiesToShow: 4,
       lobbies: []
     };
   },
   components: {
     Button,
-    Lobby
+    Players
   },
 
   methods: {
@@ -38,18 +44,6 @@ export default {
         this.$store.state.user.about.id
       );
       this.$store.dispatch("user/joinLobby", this.$socket.io.engine.id);
-      this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
-    },
-
-    joinLobby(lobby) {
-      //set socket id to lobby's id
-      // this.$socket.id = lobby.id;
-      this.$socket.emit(
-        "join_lobby",
-        lobby.id,
-        this.$store.state.user.about.id
-      );
-      this.$store.dispatch("user/joinLobby", lobby.id);
       this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
     },
 
@@ -73,6 +67,7 @@ export default {
       // show only first 4
       // TODO: SORTING show 4 that have most players or less left time etc
       this.lobbies = res.data.slice(0, 4);
+      console.log(res);
     } catch (err) {
       console.error(err);
     }
@@ -117,7 +112,7 @@ export default {
 
   .sort {
     float: right;
-    margin-right: 30%;
+    margin-right: 33%;
     display: table;
     margin-top: -50px;
 
@@ -144,7 +139,7 @@ export default {
 // BREAKPOINTS
 
 @media only screen and (max-width: 900px) {
-  .container {
+  .lobbies-container {
     .sort {
       margin-right: 10%;
     }
@@ -155,7 +150,7 @@ export default {
 }
 
 @media only screen and (max-width: 640px) {
-  .container {
+  .lobbies-container {
     .sort {
       margin-right: 5%;
       margin-top: -35px;
@@ -163,8 +158,6 @@ export default {
     }
     p {
       font-size: 30px;
-      padding-top: 20px;
-      margin-bottom: 20px;
     }
     .create-lobby-btn {
       width: 60px;
