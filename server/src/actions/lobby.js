@@ -1,20 +1,72 @@
-let lobbies = ['11111asd', 'asdasdasd', '213sada', 'asd123123', '000asd'];
+let lobbies = [
+  {
+    id: 'Lobby0',
+    state: 'lobby',
+    users: [
+      { id: 'asd', socketId: '123asd', owner: false },
+      { id: 'dsa', socketId: 'dsa321', owner: false }
+    ]
+  },
+  {
+    id: 'Lobby1',
+    state: 'lobby',
+    users: [
+      { id: 'qwe', socketId: '123qwe', owner: false },
+      { id: 'ewq', socketId: 'ewq321', owner: false }
+    ]
+  }
+];
 
-// let lobby = {
-//   id: '11111asd',
-//   users: ['123', '132', '1123', '223', '123999'],
-//   state: "lobby" || "game" || "voting",
-//   playingTime: "12m",
-//   state === lobby ? countdown: "eg.12s" : countdown: null
-// }
+function contains(arr, id) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].id === id) return true;
+  }
+  return false;
+}
 
-export const addLobby = lobbyId => {
-  // check if lobby doesn't exists
-  lobbies.includes(lobbyId)
-    ? console.log('lobby already exists')
-    : lobbies.push(lobbyId);
+export const createLobby = (lobbyId, userId, socketId) => {
+  try {
+    let newLobby = new Object({
+      id: lobbyId,
+      state: 'lobby',
+      users: [
+        {
+          id: userId,
+          socketId: socketId,
+          owner: true
+        }
+      ]
+    });
 
-  // console.log(lobbies);
+    // check if lobby doesn't exist
+    contains(lobbies, newLobby.id)
+      ? console.log('Lobby already exists.')
+      : lobbies.push(newLobby);
+  } catch (err) {
+    console.error(err);
+  }
+  console.log(JSON.stringify(lobbies, null, 4));
+};
+
+export const joinLobby = (lobbyId, userId, socketId) => {
+  try {
+    let lobbyToJoin = lobbies.find(obj => {
+      return obj.id === lobbyId;
+    });
+
+    let newUser = new Object({
+      id: userId,
+      socketId: socketId,
+      owner: false
+    });
+
+    contains(lobbyToJoin.users, newUser.id)
+      ? console.log('User is already in the lobby.')
+      : lobbyToJoin.users.push(newUser);
+  } catch (err) {
+    console.error(err);
+  }
+  console.log(JSON.stringify(lobbies, null, 4));
 };
 
 export const returnLobbies = () => {

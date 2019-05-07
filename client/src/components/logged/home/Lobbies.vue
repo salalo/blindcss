@@ -32,16 +32,24 @@ export default {
 
   methods: {
     createLobby() {
-      this.$socket.emit("create_lobby", this.$socket.io.engine.id);
+      this.$socket.emit(
+        "create_lobby",
+        this.$socket.io.engine.id,
+        this.$store.state.user.about.id
+      );
       this.$store.dispatch("user/joinLobby", this.$socket.io.engine.id);
       this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
     },
 
     joinLobby(lobby) {
       //set socket id to lobby's id
-      this.$socket.id = lobby;
-      this.$socket.emit("join_lobby", lobby);
-      this.$store.dispatch("user/joinLobby", lobby);
+      // this.$socket.id = lobby.id;
+      this.$socket.emit(
+        "join_lobby",
+        lobby.id,
+        this.$store.state.user.about.id
+      );
+      this.$store.dispatch("user/joinLobby", lobby.id);
       this.$store.dispatch("lobby/addPlayer", this.$store.state.user.about.id);
     },
 

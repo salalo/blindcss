@@ -28,7 +28,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      timeleft: 20
+      timeleft: 10
     };
   },
 

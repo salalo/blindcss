@@ -11,7 +11,7 @@ import socketIO from 'socket.io';
 
 import auth from './routes/auth.js';
 import lobbies from './routes/lobbies.js';
-import { addLobby } from './actions/lobby.js';
+import { createLobby, joinLobby } from './actions/lobby.js';
 import keys from './config/keys.js';
 import socialAuth from './actions/auth.js';
 
@@ -22,16 +22,19 @@ const io = socketIO(server);
 io.on('connection', socket => {
   console.log('User connected');
 
-  socket.on('create_lobby', lobby_id => {
+  socket.on('create_lobby', (lobby_id, user_id) => {
+    createLobby(lobby_id, user_id, socket.id);
     socket.join(lobby_id);
-    addLobby(lobby_id);
     console.log('Lobby: ', lobby_id, 'created.');
   });
 
-  socket.on('join_lobby', id => {
-    socket.join(id);
-    console.log('Joined to lobby: ', id);
+  socket.on('join_lobby', (lobbyId, userId) => {
+    joinLobby(lobbyId, userId, socket.id);
+    socket.join(lobbyId);
+    console.log('Joined to lobby: ', lobbyId);
   });
+
+  // leave lobby
 
   socket.on('disconnect', () => {
     console.log('User disconnected');
