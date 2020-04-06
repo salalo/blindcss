@@ -4,6 +4,11 @@ BlindCSS is a **currently abandoned** browser open source coding game, for those
 
 ###### Looking forward to revive the project ASAP, may be in different stack.
 
+
+#### Stack
+
+The project uses MEVN stack but might be changed to MERN in the future. The authentication is provided by [passport.js](http://www.passportjs.org/) oAuth strategies. SocketIO for handling lobbies.
+
 ---
 
 ## The game flow
